@@ -23,8 +23,6 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.StrictMode;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,16 +36,20 @@ import com.google.mlkit.vision.demo.R;
 
 /** Demo app chooser which allows you pick from all available testing Activities. */
 public final class ChooserActivity extends AppCompatActivity
-    implements AdapterView.OnItemClickListener , FragmentManager.OnBackStackChangedListener {
+    implements AdapterView.OnItemClickListener {
   private static final String TAG = "ChooserActivity";
 
   @SuppressWarnings("NewApi") // CameraX is only available on API 21+
   private static final Class<?>[] CLASSES =
       VERSION.SDK_INT < VERSION_CODES.LOLLIPOP
           ? new Class<?>[] {
+            LivePreviewActivity.class, StillImageActivity.class,
           }
           : new Class<?>[] {
+            LivePreviewActivity.class,
+            StillImageActivity.class,
             CameraXLivePreviewActivity.class,
+            CameraXSourceDemoActivity.class,
           };
 
   private static final int[] DESCRIPTION_IDS =
@@ -56,7 +58,10 @@ public final class ChooserActivity extends AppCompatActivity
             R.string.desc_camera_source_activity, R.string.desc_still_image_activity,
           }
           : new int[] {
+            R.string.desc_camera_source_activity,
+            R.string.desc_still_image_activity,
             R.string.desc_camerax_live_preview_activity,
+            R.string.desc_cameraxsource_demo_activity,
           };
 
   @Override
@@ -75,19 +80,15 @@ public final class ChooserActivity extends AppCompatActivity
     Log.d(TAG, "onCreate");
 
     setContentView(R.layout.activity_chooser);
-    getSupportFragmentManager().addOnBackStackChangedListener(this);
-    if (savedInstanceState == null)
-      getSupportFragmentManager().beginTransaction().add(R.id.fragment, new DevicesFragment(), "devices").commit();
-    else
-      onBackStackChanged();
+
     // Set up ListView and Adapter
-//    ListView listView = findViewById(R.id.test_activity_list_view);
-//
-//    MyArrayAdapter adapter = new MyArrayAdapter(this, android.R.layout.simple_list_item_2, CLASSES);
-//    adapter.setDescriptionIds(DESCRIPTION_IDS);
-//
-//    listView.setAdapter(adapter);
-//    listView.setOnItemClickListener(this);
+    ListView listView = findViewById(R.id.test_activity_list_view);
+
+    MyArrayAdapter adapter = new MyArrayAdapter(this, android.R.layout.simple_list_item_2, CLASSES);
+    adapter.setDescriptionIds(DESCRIPTION_IDS);
+
+    listView.setAdapter(adapter);
+    listView.setOnItemClickListener(this);
   }
 
   @Override
@@ -95,10 +96,7 @@ public final class ChooserActivity extends AppCompatActivity
     Class<?> clicked = CLASSES[position];
     startActivity(new Intent(this, clicked));
   }
-  @Override
-  public void onBackStackChanged() {
-    getSupportActionBar().setDisplayHomeAsUpEnabled(getSupportFragmentManager().getBackStackEntryCount()>0);
-  }
+
   private static class MyArrayAdapter extends ArrayAdapter<Class<?>> {
 
     private final Context context;

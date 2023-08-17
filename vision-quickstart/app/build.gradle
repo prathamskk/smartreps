@@ -44,9 +44,6 @@ android {
     aaptOptions {
         noCompress "tflite"
     }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 repositories {
@@ -127,8 +124,6 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.guava:guava:27.1-android'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
     // For how to setup gradle dependencies in Android X, see:
     // https://developer.android.com/training/testing/set-up-project#gradle-dependencies
@@ -146,7 +141,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata:2.3.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.1"
 
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.annotation:annotation:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 

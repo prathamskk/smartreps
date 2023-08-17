@@ -22,15 +22,14 @@
       android:layout_height="wrap_content"
       android:paddingTop="32dp"
       android:paddingBottom="32dp"
+      android:fontFamily="google-sans"
       android:gravity="center_horizontal"
       android:text="@string/app_name"
       android:textColor="@color/white"
       android:textSize="18sp"/>
 
-  <RelativeLayout
-      android:id="@+id/fragment"
+  <ListView
+      android:id="@+id/test_activity_list_view"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
+      android:layout_height="match_parent"/>
 </LinearLayout>
