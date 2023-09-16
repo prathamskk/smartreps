@@ -11,4 +11,9 @@
     <color name="white">#FFFFFF</color>
     <color name="blue">#4286f4</color>
     <color name="red">#f44242</color>
+
+
+    <color name="colorRecieveText">#00FF00</color>
+    <color name="colorSendText">#82CAFF</color>
+    <color name="colorStatusText">#FFDB58</color>
 </resources>

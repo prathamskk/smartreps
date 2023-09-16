@@ -23,6 +23,8 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.StrictMode;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +38,7 @@ import com.google.mlkit.vision.demo.R;
 
 /** Demo app chooser which allows you pick from all available testing Activities. */
 public final class ChooserActivity extends AppCompatActivity
-    implements AdapterView.OnItemClickListener {
+    implements AdapterView.OnItemClickListener , FragmentManager.OnBackStackChangedListener  {
   private static final String TAG = "ChooserActivity";
 
   @SuppressWarnings("NewApi") // CameraX is only available on API 21+
@@ -47,9 +49,9 @@ public final class ChooserActivity extends AppCompatActivity
           }
           : new Class<?>[] {
             LivePreviewActivity.class,
-            StillImageActivity.class,
-            CameraXLivePreviewActivity.class,
-            CameraXSourceDemoActivity.class,
+//            StillImageActivity.class,
+//            CameraXLivePreviewActivity.class,
+//            CameraXSourceDemoActivity.class,
           };
 
   private static final int[] DESCRIPTION_IDS =
@@ -59,9 +61,9 @@ public final class ChooserActivity extends AppCompatActivity
           }
           : new int[] {
             R.string.desc_camera_source_activity,
-            R.string.desc_still_image_activity,
-            R.string.desc_camerax_live_preview_activity,
-            R.string.desc_cameraxsource_demo_activity,
+//            R.string.desc_still_image_activity,
+//            R.string.desc_camerax_live_preview_activity,
+//            R.string.desc_cameraxsource_demo_activity,
           };
 
   @Override
@@ -89,6 +91,12 @@ public final class ChooserActivity extends AppCompatActivity
 
     listView.setAdapter(adapter);
     listView.setOnItemClickListener(this);
+
+    getSupportFragmentManager().addOnBackStackChangedListener(this);
+        if (savedInstanceState == null)
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment, new DevicesFragment(), "devices").commit();
+        else
+            onBackStackChanged();
   }
 
   @Override
@@ -129,5 +137,16 @@ public final class ChooserActivity extends AppCompatActivity
     void setDescriptionIds(int[] descriptionIds) {
       this.descriptionIds = descriptionIds;
     }
+  }
+
+  @Override
+  public void onBackStackChanged() {
+    getSupportActionBar().setDisplayHomeAsUpEnabled(getSupportFragmentManager().getBackStackEntryCount()>0);
+  }
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    onBackPressed();
+    return true;
   }
 }

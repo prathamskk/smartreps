@@ -114,6 +114,7 @@
             android:name=".preference.SettingsActivity"
             android:exported="false"/>
 
+        <service android:name=".java.SerialService" />
     </application>
     <queries>
         <intent>
