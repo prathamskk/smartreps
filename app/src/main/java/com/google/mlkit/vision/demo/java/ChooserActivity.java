@@ -43,15 +43,8 @@ public final class ChooserActivity extends AppCompatActivity
 
   @SuppressWarnings("NewApi") // CameraX is only available on API 21+
   private static final Class<?>[] CLASSES =
-      VERSION.SDK_INT < VERSION_CODES.LOLLIPOP
-          ? new Class<?>[] {
-            LivePreviewActivity.class, StillImageActivity.class,
-          }
-          : new Class<?>[] {
-            LivePreviewActivity.class,
-//            StillImageActivity.class,
-//            CameraXLivePreviewActivity.class,
-//            CameraXSourceDemoActivity.class,
+          new Class<?>[]{
+                  LivePreviewActivity.class,
           };
 
   private static final int[] DESCRIPTION_IDS =
@@ -61,9 +54,6 @@ public final class ChooserActivity extends AppCompatActivity
           }
           : new int[] {
             R.string.desc_camera_source_activity,
-//            R.string.desc_still_image_activity,
-//            R.string.desc_camerax_live_preview_activity,
-//            R.string.desc_cameraxsource_demo_activity,
           };
 
   @Override
@@ -84,13 +74,13 @@ public final class ChooserActivity extends AppCompatActivity
     setContentView(R.layout.activity_chooser);
 
     // Set up ListView and Adapter
-    ListView listView = findViewById(R.id.test_activity_list_view);
+//    ListView listView = findViewById(R.id.test_activity_list_view);
 
-    MyArrayAdapter adapter = new MyArrayAdapter(this, android.R.layout.simple_list_item_2, CLASSES);
-    adapter.setDescriptionIds(DESCRIPTION_IDS);
+//    MyArrayAdapter adapter = new MyArrayAdapter(this, android.R.layout.simple_list_item_2, CLASSES);
+//    adapter.setDescriptionIds(DESCRIPTION_IDS);
 
-    listView.setAdapter(adapter);
-    listView.setOnItemClickListener(this);
+//    listView.setAdapter(adapter);
+//    listView.setOnItemClickListener(this);
 
     getSupportFragmentManager().addOnBackStackChangedListener(this);
         if (savedInstanceState == null)
@@ -102,7 +92,7 @@ public final class ChooserActivity extends AppCompatActivity
   @Override
   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     Class<?> clicked = CLASSES[position];
-    startActivity(new Intent(this, clicked));
+    startActivity(new Intent(this, LivePreviewActivity.class));
   }
 
   private static class MyArrayAdapter extends ArrayAdapter<Class<?>> {

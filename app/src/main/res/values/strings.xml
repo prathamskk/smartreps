@@ -6,8 +6,8 @@
     <string name="bluetooth_permission_grant">Bluetooth permission is required by this App. Please grant in next dialog.</string>
     <string name="bluetooth_permission_denied">Bluetooth permission was permanently denied. You have to enable permission \"%s\" in App settings.</string>
 
-    <string name="app_name" translatable="false">MLKit-Vision</string>
-    <string name="java_entry_title" translatable="false">Run the ML Kit quickstart written in Java</string>
+    <string name="app_name" translatable="false">SmartReps</string>
+    <string name="java_entry_title" translatable="false">Welcome to SmartReps</string>
     <string name="kotlin_entry_title" translatable="false">Run the ML Kit quickstart written in Kotlin</string>
     <string name="ok" translatable="false">OK</string>
     <string name="permission_camera_rationale" translatable="false">Access to the camera is needed for detection</string>
