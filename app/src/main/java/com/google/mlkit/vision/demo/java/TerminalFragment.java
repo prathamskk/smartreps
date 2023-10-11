@@ -133,6 +133,7 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_terminal, container, false);
         view.findViewById(R.id.push_up).setOnClickListener(this::onPushUpClick);
+        view.findViewById(R.id.squat).setOnClickListener(this::onSquatClick);
 //        receiveText = view.findViewById(R.id.receive_text);                          // TextView performance decreases with number of spans
 //        receiveText.setTextColor(getResources().getColor(R.color.colorRecieveText)); // set as default color to reduce number of spans
 //        receiveText.setMovementMethod(ScrollingMovementMethod.getInstance());
@@ -299,9 +300,17 @@ public class TerminalFragment extends Fragment implements ServiceConnection, Ser
     }
 
     public void onPushUpClick(View view) {
-        startActivity(new Intent(TerminalFragment.this.getActivity(), LivePreviewActivity.class));
+        Intent myIntent = new Intent(getActivity(), LivePreviewActivity.class);
+        myIntent.putExtra("exercise", "pushup");
+        startActivity(myIntent);
     }
 
+
+    private void onSquatClick(View view) {
+        Intent myIntent = new Intent(getActivity(), LivePreviewActivity.class);
+        myIntent.putExtra("exercise", "squat");
+        startActivity(myIntent);
+    }
 
 
 }

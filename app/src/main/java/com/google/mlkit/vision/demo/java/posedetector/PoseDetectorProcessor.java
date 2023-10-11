@@ -48,6 +48,7 @@ public class PoseDetectorProcessor
   private final boolean isStreamMode;
   private final Context context;
   private final Executor classificationExecutor;
+  private final String exercise_name;
 
   private PoseClassifierProcessor poseClassifierProcessor;
   /** Internal class to hold Pose and classification results. */
@@ -76,7 +77,9 @@ public class PoseDetectorProcessor
       boolean visualizeZ,
       boolean rescaleZForVisualization,
       boolean runClassification,
-      boolean isStreamMode) {
+      boolean isStreamMode,
+      String exercise_name
+  ) {
     super(context);
     this.showInFrameLikelihood = showInFrameLikelihood;
     this.visualizeZ = visualizeZ;
@@ -85,6 +88,8 @@ public class PoseDetectorProcessor
     this.runClassification = runClassification;
     this.isStreamMode = isStreamMode;
     this.context = context;
+    this.exercise_name = exercise_name;
+
     classificationExecutor = Executors.newSingleThreadExecutor();
   }
 
@@ -105,7 +110,7 @@ public class PoseDetectorProcessor
               List<String> classificationResult = new ArrayList<>();
               if (runClassification) {
                 if (poseClassifierProcessor == null) {
-                  poseClassifierProcessor = new PoseClassifierProcessor(context, isStreamMode);
+                  poseClassifierProcessor = new PoseClassifierProcessor(context, isStreamMode,exercise_name);
                 }
                 classificationResult = poseClassifierProcessor.getPoseResult(pose);
               }
@@ -124,7 +129,7 @@ public class PoseDetectorProcessor
               List<String> classificationResult = new ArrayList<>();
               if (runClassification) {
                 if (poseClassifierProcessor == null) {
-                  poseClassifierProcessor = new PoseClassifierProcessor(context, isStreamMode);
+                  poseClassifierProcessor = new PoseClassifierProcessor(context, isStreamMode ,exercise_name);
                 }
                 classificationResult = poseClassifierProcessor.getPoseResult(pose);
               }

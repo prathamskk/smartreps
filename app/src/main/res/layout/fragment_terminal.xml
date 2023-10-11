@@ -5,22 +5,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-<GridLayout
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:rowCount="3"
-    android:columnCount="2"
+    android:orientation="vertical"
     >
 
     <androidx.cardview.widget.CardView
         android:id="@+id/push_up"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_row="0"
-        android:layout_column="0"
         android:layout_gravity="fill"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
@@ -32,8 +27,8 @@ android:rowCount="3"
         android:gravity="center"
         android:layout_gravity="center_vertical|center_horizontal">
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/pushup"
             />
     <TextView
@@ -47,13 +42,10 @@ android:rowCount="3"
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:id="@+id/squat"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_row="0"
-        android:layout_column="1"
         android:layout_gravity="fill"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp">
@@ -64,15 +56,15 @@ android:rowCount="3"
             android:gravity="center"
             android:layout_gravity="center_vertical|center_horizontal">
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/situp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/squat"
 
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sit Up"
+                android:text="Squats"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 />
@@ -81,13 +73,9 @@ android:rowCount="3"
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_row="1"
-        android:layout_column="0"
         android:layout_gravity="fill"
-        android:layout_rowWeight="1"
-        android:layout_columnWeight="1"
         android:layout_margin="8dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp">
@@ -98,8 +86,8 @@ android:rowCount="3"
             android:gravity="center"
             android:layout_gravity="center_vertical|center_horizontal">
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/logo_mlkit"
 
                 />
@@ -112,7 +100,7 @@ android:rowCount="3"
                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-</GridLayout>
+</LinearLayout>
 
 
 

@@ -55,7 +55,7 @@ public class PoseClassifierProcessor {
   private String lastRepResult;
 
   @WorkerThread
-  public PoseClassifierProcessor(Context context, boolean isStreamMode) {
+  public PoseClassifierProcessor(Context context, boolean isStreamMode , String exercise_name) {
     Preconditions.checkState(Looper.myLooper() != Looper.getMainLooper());
     this.isStreamMode = isStreamMode;
     if (isStreamMode) {
@@ -63,10 +63,10 @@ public class PoseClassifierProcessor {
       repCounters = new ArrayList<>();
       lastRepResult = "";
     }
-    loadPoseSamples(context);
+    loadPoseSamples(context, exercise_name);
   }
 
-  private void loadPoseSamples(Context context) {
+  private void loadPoseSamples(Context context , String exercise_name) {
     List<PoseSample> poseSamples = new ArrayList<>();
     try {
       BufferedReader reader = new BufferedReader(
@@ -85,9 +85,11 @@ public class PoseClassifierProcessor {
     }
     poseClassifier = new PoseClassifier(poseSamples);
     if (isStreamMode) {
-      for (String className : POSE_CLASSES) {
-        repCounters.add(new RepetitionCounter(className));
-      }
+      if(exercise_name.equals("pushup"))
+        repCounters.add(new RepetitionCounter(PUSHUPS_CLASS));
+      else if(exercise_name.equals("squat"))
+        repCounters.add(new RepetitionCounter(SQUATS_CLASS));
+
     }
   }
 

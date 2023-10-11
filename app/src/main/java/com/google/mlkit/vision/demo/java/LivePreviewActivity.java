@@ -156,6 +156,8 @@ public final class LivePreviewActivity extends AppCompatActivity
         boolean visualizeZ = PreferenceUtils.shouldPoseDetectionVisualizeZ(this);
         boolean rescaleZ = PreferenceUtils.shouldPoseDetectionRescaleZForVisualization(this);
         boolean runClassification = PreferenceUtils.shouldPoseDetectionRunClassification(this);
+        Intent intent = getIntent();
+        String exercise_name = intent.getStringExtra("exercise");
         cameraSource.setMachineLearningFrameProcessor(
                 new PoseDetectorProcessor(
                         this,
@@ -164,7 +166,8 @@ public final class LivePreviewActivity extends AppCompatActivity
                         visualizeZ,
                         rescaleZ,
                         runClassification,
-                        /* isStreamMode = */ true));
+                        /* isStreamMode = */ true
+                ,exercise_name));
       } else {
         Log.e(TAG, "Unknown model: " + model);
       }
